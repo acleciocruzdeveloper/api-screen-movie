@@ -42,8 +42,8 @@ public class MovieControllerTest {
     }
 
     @Test
-    @DisplayName("nao deve registrar um filme com body invalido")
-    void naoDeveRegistrarFilmeComDadosInvalidos() throws Exception {
+    @DisplayName("deve registrar um filme com sucesso no mongodb")
+    void deveInserirUmFilmeComSucessoNoMongoDB() throws Exception {
         Movie movie = MoviesMock.createDefaultMovie();
         MovieDTO movieDTO = MovieDTO.converterMovieModel(movie);
 
@@ -54,7 +54,8 @@ public class MovieControllerTest {
     }
 
     @Test
-    void shouldReturnBadRequestWhenMovieDTOIsInvalid() throws Exception {
+    @DisplayName("nao deve registrar um filme com body invalido")
+    void deveRetornarBadRequestComRequisicaoSemParametrosObrigatorios() throws Exception {
 
         MovieDTO invalidMovieDTO = new MovieDTO(UUID.randomUUID().toString(), null, 2.0,1,  "alguma imagem");
 
