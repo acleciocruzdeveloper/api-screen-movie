@@ -1,4 +1,4 @@
-# api-screen-movie
+# api-screen-movie [![Swagger](https://img.shields.io/badge/swagger-UI-green)](http://localhost:8080/swagger-ui.html)
 
 ## Descrição
 Está API tem a finalidade de buscar informações sobre series e filmes da base o OMDB
@@ -15,6 +15,7 @@ o uso de:
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
+
 ## Como utilizar a API
 
 Subistitua os valores das variaveis declaradas no arquivo application.yaml
@@ -23,7 +24,15 @@ Subistitua os valores das variaveis declaradas no arquivo application.yaml
 - PASSWORD_CONNECTION
 - OMDB_APIKEY
 
+## API Documentation
+
+Para acessar a documentação da aplicação depois de configurar local
+basta clicar no link abaixo: 
+
+[Swagger UI](http://localhost:8080/swagger-ui.html)
+
 ## 
+
 Caso não tenha cadastro nos serviços de database e a API do OMDB segue links para cadastros: 
 
 - https://account.mongodb.com/account/login?signedOut=true
