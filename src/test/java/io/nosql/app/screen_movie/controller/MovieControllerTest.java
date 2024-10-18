@@ -57,7 +57,8 @@ public class MovieControllerTest {
     @DisplayName("nao deve registrar um filme com body invalido")
     void deveRetornarBadRequestComRequisicaoSemParametrosObrigatorios() throws Exception {
 
-        MovieDTO invalidMovieDTO = new MovieDTO(UUID.randomUUID().toString(), null, 2.0,1,  "alguma imagem");
+        MovieDTO invalidMovieDTO = new MovieDTO(UUID.randomUUID()
+                .toString(), null, 2.0, 1, "alguma imagem");
 
         mvc.perform(post("/movies")
                         .contentType(MediaType.APPLICATION_JSON)
