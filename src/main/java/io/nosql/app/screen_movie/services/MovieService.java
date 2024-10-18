@@ -37,4 +37,12 @@ public class MovieService {
                 .orElseThrow(() -> new RuntimeException("Object not found!"));
 
     }
+
+    public void removeMovie(String id) {
+        try {
+            repository.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
