@@ -1,4 +1,4 @@
-package io.nosql.app.screen_movie.infra.score;
+package io.nosql.app.screen_movie.repositories;
 
 import io.nosql.app.screen_movie.domain.Score;
 import org.springframework.data.mongodb.repository.MongoRepository;

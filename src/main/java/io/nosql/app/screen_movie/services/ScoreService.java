@@ -1,11 +1,12 @@
-package io.nosql.app.screen_movie.infra.score;
+package io.nosql.app.screen_movie.services;
 
 import io.nosql.app.screen_movie.domain.Movie;
 import io.nosql.app.screen_movie.domain.Score;
 import io.nosql.app.screen_movie.domain.Usuarios;
-import io.nosql.app.screen_movie.model.MovieDTO;
-import io.nosql.app.screen_movie.model.ScoreDTO;
-import io.nosql.app.screen_movie.model.UsuariosDTO;
+import io.nosql.app.screen_movie.dto.MovieDTO;
+import io.nosql.app.screen_movie.dto.ScoreDTO;
+import io.nosql.app.screen_movie.dto.UsuariosDTO;
+import io.nosql.app.screen_movie.repositories.ScoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package io.nosql.app.screen_movie.model;
+package io.nosql.app.screen_movie.dto;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class DadosOmdb implements Serializable {
+public class OmdbDTO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -6873489881147070753L;

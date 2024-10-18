@@ -1,8 +1,8 @@
 package io.nosql.app.screen_movie.controller;
 
 import io.nosql.app.screen_movie.domain.Movie;
-import io.nosql.app.screen_movie.infra.movie.MovieService;
-import io.nosql.app.screen_movie.model.MovieDTO;
+import io.nosql.app.screen_movie.services.MovieService;
+import io.nosql.app.screen_movie.dto.MovieDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

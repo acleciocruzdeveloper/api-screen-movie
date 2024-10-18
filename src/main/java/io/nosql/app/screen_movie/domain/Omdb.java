@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 @Data
-public class DataOMDBCollection implements Serializable {
+public class Omdb implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -3679985290903972736L;

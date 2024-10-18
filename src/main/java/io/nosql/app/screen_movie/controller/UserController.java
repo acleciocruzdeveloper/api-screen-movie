@@ -1,7 +1,7 @@
 package io.nosql.app.screen_movie.controller;
 
 import io.nosql.app.screen_movie.domain.Usuarios;
-import io.nosql.app.screen_movie.infra.user.UserService;
+import io.nosql.app.screen_movie.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package io.nosql.app.screen_movie.model;
+package io.nosql.app.screen_movie.dto;
 
 public record ScoreDTO(
         String id, Double value, MovieDTO movieDTO, UsuariosDTO usuariosDTO

@@ -1,9 +1,9 @@
 package io.nosql.app.screen_movie.controller;
 
-import io.nosql.app.screen_movie.infra.score.ScoreService;
-import io.nosql.app.screen_movie.model.MovieDTO;
-import io.nosql.app.screen_movie.model.ScoreDTO;
-import io.nosql.app.screen_movie.model.UsuariosDTO;
+import io.nosql.app.screen_movie.services.ScoreService;
+import io.nosql.app.screen_movie.dto.MovieDTO;
+import io.nosql.app.screen_movie.dto.ScoreDTO;
+import io.nosql.app.screen_movie.dto.UsuariosDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

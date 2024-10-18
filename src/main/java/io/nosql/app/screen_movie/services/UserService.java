@@ -1,6 +1,7 @@
-package io.nosql.app.screen_movie.infra.user;
+package io.nosql.app.screen_movie.services;
 
 import io.nosql.app.screen_movie.domain.Usuarios;
+import io.nosql.app.screen_movie.repositories.IUsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

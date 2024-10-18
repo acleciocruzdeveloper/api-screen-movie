@@ -1,6 +1,6 @@
-package io.nosql.app.screen_movie.infra.omdb;
+package io.nosql.app.screen_movie.services;
 
-import io.nosql.app.screen_movie.model.DadosOmdb;
+import io.nosql.app.screen_movie.dto.OmdbDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class OmdbService {
 
 
-    public DadosOmdb buscarDadosFilme(String apikey, String i) {
+    public OmdbDTO buscarDadosFilme(String apikey, String i) {
         return null;
     }
 

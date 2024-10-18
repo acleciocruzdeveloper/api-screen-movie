@@ -1,4 +1,4 @@
-package io.nosql.app.screen_movie.model;
+package io.nosql.app.screen_movie.dto;
 
 import io.nosql.app.screen_movie.domain.Movie;
 

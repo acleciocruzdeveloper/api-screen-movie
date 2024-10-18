@@ -1,6 +1,6 @@
 package io.nosql.app.screen_movie.domain;
 
-import io.nosql.app.screen_movie.model.ScoreDTO;
+import io.nosql.app.screen_movie.dto.ScoreDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

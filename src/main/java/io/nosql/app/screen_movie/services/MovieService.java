@@ -1,7 +1,8 @@
-package io.nosql.app.screen_movie.infra.movie;
+package io.nosql.app.screen_movie.services;
 
 import io.nosql.app.screen_movie.domain.Movie;
-import io.nosql.app.screen_movie.model.MovieDTO;
+import io.nosql.app.screen_movie.dto.MovieDTO;
+import io.nosql.app.screen_movie.repositories.IMovieRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.Cacheable;

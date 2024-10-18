@@ -11,7 +11,7 @@ public class OmdbMapper implements IConverter {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public <T> T obterDados(String json, Class<T> classe) {
+    public <T> T convertData(String json, Class<T> classe) {
         try {
             return objectMapper.readValue(json, classe);
         } catch (JsonProcessingException e) {
