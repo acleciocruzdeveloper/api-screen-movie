@@ -5,16 +5,20 @@ import io.nosql.app.screen_movie.domain.Movie;
 import io.nosql.app.screen_movie.dto.MovieDTO;
 import io.nosql.app.screen_movie.mocks.MoviesMock;
 import io.nosql.app.screen_movie.services.MovieService;
+import io.nosql.app.screen_movie.utils.UriBuilder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import java.net.URI;
+
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 
 import java.util.UUID;
@@ -33,6 +37,9 @@ public class MovieControllerTest {
     @MockBean
     MovieService movieService;
 
+    @MockBean
+    UriBuilder uriBuilder;
+
     @Autowired
     ObjectMapper mapper;
 
@@ -47,10 +54,15 @@ public class MovieControllerTest {
         Movie movie = MoviesMock.createDefaultMovie();
         MovieDTO movieDTO = MovieDTO.converterMovieModel(movie);
 
-        mvc.perform(post("/movies")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(mapper.writeValueAsString(movieDTO)))
-                .andExpect(status().isCreated());
+        when(movieService.movieRegistry(any(MovieDTO.class))).thenReturn(movieDTO);
+        when(uriBuilder.builderUriWithId(any(String.class), any()))
+                .thenReturn(URI.create("http://localhost/movies/" + movieDTO.id()));
+
+        ResultActions result = mvc.perform(post(UriBuilder.URI_REGISTER_MOVIES)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(movieDTO)));
+
+        result.andExpect(status().isCreated());
     }
 
     @Test
@@ -60,7 +72,7 @@ public class MovieControllerTest {
         MovieDTO invalidMovieDTO = new MovieDTO(UUID.randomUUID()
                 .toString(), null, 2.0, 1, "alguma imagem");
 
-        mvc.perform(post("/movies")
+        mvc.perform(post(UriBuilder.URI_REGISTER_MOVIES)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(invalidMovieDTO)))
                 .andExpect(status().isBadRequest());
