@@ -22,11 +22,8 @@ public class OmdbController {
     public ResponseEntity<OmdbRecord> getDataMove(@RequestParam String imdbId) {
         RestTemplate restTemplate = new RestTemplate();
         String url = String.format("%s?t=%s&apikey=%s", omdbConfig.getBaseUrl(), imdbId, omdbConfig.getApikey());
-
         ResponseEntity<String> responseEntity = (restTemplate.getForEntity(url, String.class));
-
         log.info("RESPONSE OMDB::: {}", responseEntity);
-
         OmdbRecord omdbRecord = mapper.convertData(responseEntity.getBody(), OmdbRecord.class);
         return ResponseEntity.ok().body(omdbRecord);
     }

@@ -2,6 +2,7 @@ package io.nosql.app.screen_movie.controller;
 
 import io.nosql.app.screen_movie.domain.Usuarios;
 import io.nosql.app.screen_movie.services.UserService;
+import io.nosql.app.screen_movie.utils.UriComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,6 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -24,18 +24,21 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
+    @RequestMapping(value = UriComponent.URI_USERS, method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Usuarios>> allUsers() {
         logger.info("FIND ALL USERS DATABASE!!");
         return ResponseEntity.ok().body(userService.findAllUser());
     }
 
-    @GetMapping("/users/{id}")
+    @RequestMapping(value = UriComponent.URI_USER_ID, method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Usuarios> userId(@PathVariable String id) {
         return ResponseEntity.ok().body(userService.findById(id));
     }
 
-    @PostMapping("/users")
+    @RequestMapping(value = UriComponent.URI_CREATE_USERS, method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Usuarios> createUser(@RequestBody Usuarios user) {
         Usuarios entity = userService.cadastrar(user);
         URI uri = ServletUriComponentsBuilder
@@ -45,7 +48,7 @@ public class UserController {
         return ResponseEntity.created(uri).body(entity);
     }
 
-    @DeleteMapping(value = "/users/{id}")
+    @RequestMapping(value = UriComponent.URI_DELETE_USER, method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable String id) {
         userService.deleteUser(id);

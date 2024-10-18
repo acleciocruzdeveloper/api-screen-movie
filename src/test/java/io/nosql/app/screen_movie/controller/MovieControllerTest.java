@@ -5,7 +5,7 @@ import io.nosql.app.screen_movie.domain.Movie;
 import io.nosql.app.screen_movie.dto.MovieDTO;
 import io.nosql.app.screen_movie.mocks.MoviesMock;
 import io.nosql.app.screen_movie.services.MovieService;
-import io.nosql.app.screen_movie.utils.UriBuilder;
+import io.nosql.app.screen_movie.utils.UriComponent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,7 +38,7 @@ public class MovieControllerTest {
     MovieService movieService;
 
     @MockBean
-    UriBuilder uriBuilder;
+    UriComponent uriComponent;
 
     @Autowired
     ObjectMapper mapper;
@@ -55,10 +55,10 @@ public class MovieControllerTest {
         MovieDTO movieDTO = MovieDTO.converterMovieModel(movie);
 
         when(movieService.movieRegistry(any(MovieDTO.class))).thenReturn(movieDTO);
-        when(uriBuilder.builderUriWithId(any(String.class), any()))
+        when(uriComponent.builderUriWithId(any(String.class), any()))
                 .thenReturn(URI.create("http://localhost/movies/" + movieDTO.id()));
 
-        ResultActions result = mvc.perform(post(UriBuilder.URI_REGISTER_MOVIES)
+        ResultActions result = mvc.perform(post(UriComponent.URI_REGISTER_MOVIES)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(movieDTO)));
 
@@ -72,7 +72,7 @@ public class MovieControllerTest {
         MovieDTO invalidMovieDTO = new MovieDTO(UUID.randomUUID()
                 .toString(), null, 2.0, 1, "alguma imagem");
 
-        mvc.perform(post(UriBuilder.URI_REGISTER_MOVIES)
+        mvc.perform(post(UriComponent.URI_REGISTER_MOVIES)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(invalidMovieDTO)))
                 .andExpect(status().isBadRequest());
