@@ -5,7 +5,6 @@ import io.nosql.app.screen_movie.dto.MovieDTO;
 import io.nosql.app.screen_movie.repositories.IMovieRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +30,6 @@ public class MovieService {
         return repository.findAll();
     }
 
-    @Cacheable("movie")
     public MovieDTO findById(String id) {
         return repository.findById(id).map(MovieDTO::converterMovieModel)
                 .orElseThrow(() -> new RuntimeException("Object not found!"));

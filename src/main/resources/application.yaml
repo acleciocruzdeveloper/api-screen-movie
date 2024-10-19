@@ -3,9 +3,6 @@ spring:
     mongodb:
       uri: mongodb+srv://${USERNAME_CONNECTION}:${PASSWORD_CONNECTION}@screen-movies.nvxgk.mongodb.net/?retryWrites=true&w=majority
       database: screen-movies
-  redis:
-    host: localhost
-    port: 6379
 
 omdb:
   apikey: ${OMDB_APIKEY}
