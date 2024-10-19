@@ -37,7 +37,9 @@ basta clicar no link abaixo:
 -   Para executar a aplicação em um container docker execute os comandos:
   - Com o docker em execução através do terminal digite docker build -t app-spring .
 
-#### dessa forma o docker realizar a construção da imagem docker.
+dessa forma o docker realizar a construção da imagem docker.
+
+### Após a construção da imagem execute o próximo comando.
 
 ``
 docker run -d -p 8080:8080 -e USERNAME_CONNECTION=<seu usuario> -e PASSWORD_CONNECTION=<sua senha db>  app-screen-movie
