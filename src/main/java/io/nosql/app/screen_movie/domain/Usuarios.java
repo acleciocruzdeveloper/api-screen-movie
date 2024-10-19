@@ -1,6 +1,7 @@
 package io.nosql.app.screen_movie.domain;
 
 import io.nosql.app.screen_movie.dto.UsuariosDTO;
+import io.nosql.app.screen_movie.enums.EPerfis;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,13 +25,17 @@ public class Usuarios  {
 
     private final String email;
 
+    private final EPerfis perfil;
+
 
     public static Usuarios converterUserDomain(UsuariosDTO usuariosDTO){
         return Usuarios.builder()
                 .id(usuariosDTO.id())
+                .nome(usuariosDTO.nome())
                 .password(usuariosDTO.password())
                 .age(usuariosDTO.age())
                 .email(usuariosDTO.email())
+                .perfil(EPerfis.USUARIO)
                 .build();
     }
 

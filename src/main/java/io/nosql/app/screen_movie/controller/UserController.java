@@ -1,6 +1,7 @@
 package io.nosql.app.screen_movie.controller;
 
 import io.nosql.app.screen_movie.domain.Usuarios;
+import io.nosql.app.screen_movie.dto.UsuariosDTO;
 import io.nosql.app.screen_movie.services.UserService;
 import io.nosql.app.screen_movie.utils.UriComponent;
 import org.slf4j.Logger;
@@ -39,13 +40,14 @@ public class UserController {
 
     @RequestMapping(value = UriComponent.URI_CREATE_USERS, method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Usuarios> createUser(@RequestBody Usuarios user) {
-        Usuarios entity = userService.cadastrar(user);
+    public ResponseEntity<UsuariosDTO> createUser(@RequestBody UsuariosDTO user) {
+
+        UsuariosDTO usuariosDTO = userService.cadastrar(user);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("{id}")
-                .buildAndExpand(entity.getId())
+                .buildAndExpand(usuariosDTO.id())
                 .toUri();
-        return ResponseEntity.created(uri).body(entity);
+        return ResponseEntity.created(uri).body(usuariosDTO);
     }
 
     @RequestMapping(value = UriComponent.URI_DELETE_USER, method = RequestMethod.DELETE)

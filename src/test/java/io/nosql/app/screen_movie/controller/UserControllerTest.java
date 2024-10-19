@@ -2,7 +2,7 @@ package io.nosql.app.screen_movie.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.nosql.app.screen_movie.domain.Usuarios;
-import io.nosql.app.screen_movie.dto.MovieDTO;
+import io.nosql.app.screen_movie.dto.UsuariosDTO;
 import io.nosql.app.screen_movie.mocks.UsersMock;
 import io.nosql.app.screen_movie.services.UserService;
 import io.nosql.app.screen_movie.utils.UriComponent;
@@ -71,8 +71,9 @@ public class UserControllerTest {
     void deveInserirUmNovoUsuarioComSucessoNoMongoDB() throws Exception {
 
         Usuarios usuario = UsersMock.createDefaultUser();
+        UsuariosDTO usuariosDTO = UsuariosDTO.converterToUserModel(usuario);
 
-        when(userService.cadastrar(any(Usuarios.class))).thenReturn(usuario);
+        when(userService.cadastrar(any(UsuariosDTO.class))).thenReturn(usuariosDTO);
 
         when(uriComponent.builderUriWithId(any(String.class), any()))
                 .thenReturn(URI.create(UriComponent.URI_USERS + usuario.getId()));
