@@ -56,7 +56,7 @@ public class MovieControllerTest {
 
         when(movieService.movieRegistry(any(MovieDTO.class))).thenReturn(movieDTO);
         when(uriComponent.builderUriWithId(any(String.class), any()))
-                .thenReturn(URI.create("http://localhost/movies/" + movieDTO.id()));
+                .thenReturn(URI.create(UriComponent.URI_MOVIES + movieDTO.id()));
 
         ResultActions result = mvc.perform(post(UriComponent.URI_REGISTER_MOVIES)
                 .contentType(MediaType.APPLICATION_JSON)
