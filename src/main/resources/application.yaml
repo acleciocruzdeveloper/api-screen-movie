@@ -7,3 +7,10 @@ spring:
 omdb:
   apikey: ${OMDB_APIKEY}
   baseUrl: http://www.omdbapi.com/
+
+
+jwt:
+  public:
+    key: classpath:app.pub
+  private:
+    key: classpath:app.key

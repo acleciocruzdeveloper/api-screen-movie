@@ -7,34 +7,40 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.io.Serial;
+import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
 @Builder
 @Document(collection = "usuarios")
-public class Usuarios  {
+public class Usuarios {
 
     @Id
-    private final String id;
+    private String id;
 
-    private final String nome;
+    private String nome;
 
-    private final int age;
+    private int age;
 
-    private final String password;
+    private String password;
 
-    private final String email;
+    private String email;
 
-    private final EPerfis perfil;
+    private EPerfis perfil;
 
 
-    public static Usuarios converterUserDomain(UsuariosDTO usuariosDTO){
+    public static Usuarios converterUserDomain(UsuariosDTO usuariosDTO) {
         return Usuarios.builder()
-                .id(usuariosDTO.id())
-                .nome(usuariosDTO.nome())
-                .password(usuariosDTO.password())
-                .age(usuariosDTO.age())
-                .email(usuariosDTO.email())
+                .id(usuariosDTO.getId())
+                .nome(usuariosDTO.getNome())
+                .password(usuariosDTO.getPassword())
+                .age(usuariosDTO.getAge())
+                .email(usuariosDTO.getEmail())
                 .perfil(EPerfis.USUARIO)
                 .build();
     }

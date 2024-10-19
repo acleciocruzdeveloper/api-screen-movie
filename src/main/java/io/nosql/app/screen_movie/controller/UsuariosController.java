@@ -15,13 +15,13 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-public class UserController {
+public class UsuariosController {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(UsuariosController.class);
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public UsuariosController(UserService userService) {
         this.userService = userService;
     }
 
@@ -45,7 +45,7 @@ public class UserController {
         UsuariosDTO usuariosDTO = userService.cadastrar(user);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("{id}")
-                .buildAndExpand(usuariosDTO.id())
+                .buildAndExpand(usuariosDTO.getId())
                 .toUri();
         return ResponseEntity.created(uri).body(usuariosDTO);
     }

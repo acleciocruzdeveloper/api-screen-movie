@@ -1,6 +1,6 @@
 package io.nosql.app.screen_movie.controller;
 
-import io.nosql.app.screen_movie.domain.Movie;
+import io.nosql.app.screen_movie.domain.Filmes;
 import io.nosql.app.screen_movie.dto.MovieDTO;
 import io.nosql.app.screen_movie.services.MovieService;
 import io.nosql.app.screen_movie.utils.UriComponent;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class MovieController {
+public class FilmesController {
 
     private final UriComponent uriComponent;
 
@@ -23,7 +23,7 @@ public class MovieController {
 
     @RequestMapping(value = UriComponent.URI_MOVIES, method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<Movie>> getAllMovies() {
+    public ResponseEntity<List<Filmes>> getAllMovies() {
         return ResponseEntity.ok().body(movieService.findAllMovies());
     }
 

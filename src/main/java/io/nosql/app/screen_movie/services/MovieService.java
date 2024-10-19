@@ -1,6 +1,6 @@
 package io.nosql.app.screen_movie.services;
 
-import io.nosql.app.screen_movie.domain.Movie;
+import io.nosql.app.screen_movie.domain.Filmes;
 import io.nosql.app.screen_movie.dto.MovieDTO;
 import io.nosql.app.screen_movie.repositories.IMovieRepository;
 import org.slf4j.Logger;
@@ -21,12 +21,12 @@ public class MovieService {
 
     public MovieDTO movieRegistry(MovieDTO data) {
         logger.info("REGISTRY NEW MOVIE -> {}", data);
-        Movie movie = repository.save(Movie.converterToMovieDomain(data));
-        return MovieDTO.converterMovieModel(movie);
+        Filmes filmes = repository.save(Filmes.converterToMovieDomain(data));
+        return MovieDTO.converterMovieModel(filmes);
     }
 
 
-    public List<Movie> findAllMovies() {
+    public List<Filmes> findAllMovies() {
         return repository.findAll();
     }
 

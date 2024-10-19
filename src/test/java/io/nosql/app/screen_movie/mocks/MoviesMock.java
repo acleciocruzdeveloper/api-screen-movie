@@ -1,6 +1,6 @@
 package io.nosql.app.screen_movie.mocks;
 
-import io.nosql.app.screen_movie.domain.Movie;
+import io.nosql.app.screen_movie.domain.Filmes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -8,12 +8,12 @@ import java.util.UUID;
 
 public class MoviesMock {
 
-    public static Movie criateMovie(String mockId, String mockTitle, Double mockScore, Integer mockCount, String mockImage) {
-        return new Movie(mockId, mockTitle, mockScore, mockCount, mockImage);
+    public static Filmes criateMovie(String mockId, String mockTitle, Double mockScore, Integer mockCount, String mockImage) {
+        return new Filmes(mockId, mockTitle, mockScore, mockCount, mockImage);
     }
 
-    public static List<Movie> createMovieList() {
-        Movie django = Movie.builder()
+    public static List<Filmes> createMovieList() {
+        Filmes django = Filmes.builder()
                 .id(UUID.randomUUID().toString())
                 .title("Django Livre")
                 .score(4.3)
@@ -21,7 +21,7 @@ public class MoviesMock {
                 .image("alguma imagem")
                 .build();
 
-        Movie matrix = Movie.builder()
+        Filmes matrix = Filmes.builder()
                 .id(UUID.randomUUID().toString())
                 .title("Matrix")
                 .score(4.3)
@@ -32,8 +32,8 @@ public class MoviesMock {
         return Arrays.asList(django, matrix);
     }
 
-    public static Movie createDefaultMovie() {
-        return Movie.builder()
+    public static Filmes createDefaultMovie() {
+        return Filmes.builder()
                 .id(UUID.randomUUID().toString())
                 .title("Matrix")
                 .score(4.3)

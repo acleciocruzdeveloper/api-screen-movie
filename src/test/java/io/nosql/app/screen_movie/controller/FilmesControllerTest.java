@@ -1,7 +1,7 @@
 package io.nosql.app.screen_movie.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.nosql.app.screen_movie.domain.Movie;
+import io.nosql.app.screen_movie.domain.Filmes;
 import io.nosql.app.screen_movie.dto.MovieDTO;
 import io.nosql.app.screen_movie.mocks.MoviesMock;
 import io.nosql.app.screen_movie.services.MovieService;
@@ -28,8 +28,8 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(MovieController.class)
-public class MovieControllerTest {
+@WebMvcTest(FilmesController.class)
+public class FilmesControllerTest {
 
     @Autowired
     MockMvc mvc;
@@ -51,8 +51,8 @@ public class MovieControllerTest {
     @Test
     @DisplayName("deve registrar um filme com sucesso no mongodb")
     void deveInserirUmFilmeComSucessoNoMongoDB() throws Exception {
-        Movie movie = MoviesMock.createDefaultMovie();
-        MovieDTO movieDTO = MovieDTO.converterMovieModel(movie);
+        Filmes filmes = MoviesMock.createDefaultMovie();
+        MovieDTO movieDTO = MovieDTO.converterMovieModel(filmes);
 
         when(movieService.movieRegistry(any(MovieDTO.class))).thenReturn(movieDTO);
         when(uriComponent.builderUriWithId(any(String.class), any()))

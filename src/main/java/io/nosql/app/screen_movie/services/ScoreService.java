@@ -1,6 +1,6 @@
 package io.nosql.app.screen_movie.services;
 
-import io.nosql.app.screen_movie.domain.Movie;
+import io.nosql.app.screen_movie.domain.Filmes;
 import io.nosql.app.screen_movie.domain.Score;
 import io.nosql.app.screen_movie.domain.Usuarios;
 import io.nosql.app.screen_movie.dto.MovieDTO;
@@ -21,7 +21,7 @@ public class ScoreService {
         Score score = Score.builder()
                 .id(scoreDTO.id())
                 .value(scoreDTO.value())
-                .movie(Movie.converterToMovieDomain(movie))
+                .filmes(Filmes.converterToMovieDomain(movie))
                 .usuarios(Usuarios.converterUserDomain(user))
                 .build();
 
