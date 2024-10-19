@@ -31,6 +31,18 @@ basta clicar no link abaixo:
 
 [Swagger UI](http://localhost:8080/swagger-ui.html)
 
+##
+
+### Executando a aplicação em um container docker:
+-   Para executar a aplicação em um container docker execute os comandos:
+  - Com o docker em execução através do terminal digite docker build -t app-spring .
+
+#### dessa forma o docker realizar a construção da imagem docker.
+
+``
+docker run -d -p 8080:8080 -e USERNAME_CONNECTION=<seu usuario> -e PASSWORD_CONNECTION=<sua senha db>  app-screen-movie
+``
+
 ## 
 
 Caso não tenha cadastro nos serviços de database e a API do OMDB segue links para cadastros: 
