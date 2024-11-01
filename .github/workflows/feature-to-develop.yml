@@ -31,6 +31,11 @@ jobs:
     - name: Run unit tests (optional)
       run: mvn test
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
     - name: Create Pull Request to Develop
       uses: peter-evans/create-pull-request@v4
       with:
