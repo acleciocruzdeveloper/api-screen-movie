@@ -4,6 +4,7 @@ import io.nosql.app.screen_movie.domain.Usuarios;
 import io.nosql.app.screen_movie.dto.UsuariosDTO;
 import io.nosql.app.screen_movie.services.UserService;
 import io.nosql.app.screen_movie.utils.UriComponent;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+@Slf4j
 @RestController
 public class UsuariosController {
 
