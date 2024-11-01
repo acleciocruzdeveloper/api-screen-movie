@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  CI:
+  Build-And-Test:
 
     runs-on: ubuntu-latest
 
@@ -24,5 +24,16 @@ jobs:
         echo "USERNAME_CONNECTION=${{ secrets.USERNAME_CONNECTION }}" >> settings.xml
         echo "PASSWORD_CONNECTION=${{ secrets.PASSWORD_CONNECTION }}" >> settings.xml
         echo "OMDB_APIKEY=${{ secrets.OMDB_APIKEY }}" >> settings.xml
-    - name: CI
-      run: mvn -B package --file pom.xml
+    - name: Build with Maven
+      run: mvn clean install
+
+    - name: Run unit tests (optional)
+      run: mvn test
+
+  docker-image:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{secrets.IMAGE_NAME}}:$(date +%s)
