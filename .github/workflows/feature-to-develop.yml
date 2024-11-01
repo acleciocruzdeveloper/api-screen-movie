@@ -63,6 +63,8 @@ jobs:
         run: |
           git checkout -b auto-pr-${{ github.sha }}
           git push origin auto-pr-${{ github.sha }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Pull Request to Develop
         uses: peter-evans/create-pull-request@v4
