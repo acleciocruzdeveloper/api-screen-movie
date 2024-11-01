@@ -39,9 +39,8 @@ jobs:
     - name: Create Pull Request to Develop
       uses: peter-evans/create-pull-request@v5
       with:
-        branch: ""
-        title: "Feature to Develop PR"
+        base: develop
+        title: "Auto PR from Feature"
         commit-message: "Automatic PR from feature branch"
-        body: "This PR merges changes from feature/* into develop."
         delete-branch: false
 
