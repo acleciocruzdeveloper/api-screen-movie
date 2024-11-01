@@ -4,6 +4,30 @@ spring:
       uri: mongodb+srv://${USERNAME_CONNECTION}:${PASSWORD_CONNECTION}@screen-movies.nvxgk.mongodb.net/?retryWrites=true&w=majority
       database: screen-movies
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'health,info,prometheus,metrics'
+  endpoint:
+    health:
+      show-details: "always"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  health:
+    enabled: true
+  info:
+    enabled: true
+
 omdb:
   apikey: ${OMDB_APIKEY}
   baseUrl: http://www.omdbapi.com/
+
+
+jwt:
+  public:
+    key: classpath:app.pub
+  private:
+    key: classpath:app.key

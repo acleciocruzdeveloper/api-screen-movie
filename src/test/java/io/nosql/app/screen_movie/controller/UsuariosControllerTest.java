@@ -2,7 +2,7 @@ package io.nosql.app.screen_movie.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.nosql.app.screen_movie.domain.Usuarios;
-import io.nosql.app.screen_movie.dto.MovieDTO;
+import io.nosql.app.screen_movie.dto.UsuariosDTO;
 import io.nosql.app.screen_movie.mocks.UsersMock;
 import io.nosql.app.screen_movie.services.UserService;
 import io.nosql.app.screen_movie.utils.UriComponent;
@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -28,8 +30,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(UserController.class)
-public class UserControllerTest {
+@WebMvcTest(UsuariosController.class)
+public class UsuariosControllerTest {
 
     @Autowired
     MockMvc mvc;
@@ -49,6 +51,7 @@ public class UserControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "usuario", password = "123456")
     @DisplayName("deve retornar uma lista de usuarios cadastrados")
     void deveBuscarUmaListaDeUsuariosNoMongoDB() throws Exception {
 
@@ -57,6 +60,7 @@ public class UserControllerTest {
         when(userService.findAllUser()).thenReturn(usuarios);
 
         ResultActions result = mvc.perform(get(UriComponent.URI_USERS)
+                .with(SecurityMockMvcRequestPostProcessors.csrf())
                 .contentType(MediaType.APPLICATION_JSON));
 
         result.andExpect(status().isOk())
@@ -67,17 +71,20 @@ public class UserControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "usuario", password = "123456")
     @DisplayName("deve realizar o cadastro de um novo usuario com sucesso")
     void deveInserirUmNovoUsuarioComSucessoNoMongoDB() throws Exception {
 
         Usuarios usuario = UsersMock.createDefaultUser();
+        UsuariosDTO usuariosDTO = UsuariosDTO.converterToUserModel(usuario);
 
-        when(userService.cadastrar(any(Usuarios.class))).thenReturn(usuario);
+        when(userService.cadastrar(any(UsuariosDTO.class))).thenReturn(usuariosDTO);
 
         when(uriComponent.builderUriWithId(any(String.class), any()))
                 .thenReturn(URI.create(UriComponent.URI_USERS + usuario.getId()));
 
         ResultActions result = mvc.perform(post(UriComponent.URI_CREATE_USERS)
+                        .with(SecurityMockMvcRequestPostProcessors.csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(usuario)));
 
