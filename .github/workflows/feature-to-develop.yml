@@ -28,6 +28,9 @@ jobs:
     - name: Build with Maven
       run: mvn clean install
 
+    - name: Run unit tests (optional)
+      run: mvn test
+
     - name: Create Pull Request to Develop
       uses: peter-evans/create-pull-request@v4
       with:
@@ -37,5 +40,3 @@ jobs:
         body: "This PR merges changes from feature/* into develop."
         delete-branch: false
 
-    - name: Run unit tests (optional)
-      run: mvn test
