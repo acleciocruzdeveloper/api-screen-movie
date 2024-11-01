@@ -19,6 +19,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Set Maven Properties with Secrets
+      run: |
+        echo "USERNAME_CONNECTION=${{ secrets.USERNAME_CONNECTION }}" >> settings.xml
+        echo "PASSWORD_CONNECTION=${{ secrets.PASSWORD_CONNECTION }}" >> settings.xml
+        echo "OMDB_APIKEY=${{ secrets.OMDB_APIKEY }}" >> settings.xml
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
