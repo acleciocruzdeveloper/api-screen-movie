@@ -28,7 +28,7 @@ public class Score implements Serializable {
     private Double value;
 
     @DBRef
-    private Movie movie;
+    private Filmes filmes;
 
     @DBRef
     private Usuarios usuarios;
@@ -38,7 +38,7 @@ public class Score implements Serializable {
         return Score.builder()
                 .id(scoreDTO.id())
                 .value(scoreDTO.value())
-                .movie(Movie.converterToMovieDomain(scoreDTO.movieDTO()))
+                .filmes(Filmes.converterToMovieDomain(scoreDTO.movieDTO()))
                 .usuarios(Usuarios.converterUserDomain(scoreDTO.usuariosDTO()))
                 .build();
     }

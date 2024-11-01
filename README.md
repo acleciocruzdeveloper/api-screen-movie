@@ -1,4 +1,4 @@
-# api-screen-movie [![Swagger](https://img.shields.io/badge/swagger-UI-green)](http://localhost:8080/swagger-ui.html)
+# api-screen-filmes [![Swagger](https://img.shields.io/badge/swagger-UI-green)](http://localhost:8080/swagger-ui.html)
 
 ## Descrição
 Está API tem a finalidade de buscar informações sobre series e filmes da base o OMDB
@@ -37,10 +37,12 @@ basta clicar no link abaixo:
 -   Para executar a aplicação em um container docker execute os comandos:
   - Com o docker em execução através do terminal digite docker build -t app-spring .
 
-#### dessa forma o docker realizar a construção da imagem docker.
+dessa forma o docker realizar a construção da imagem docker.
+
+### Após a construção da imagem execute o próximo comando.
 
 ``
-docker run -d -p 8080:8080 -e USERNAME_CONNECTION=<seu usuario> -e PASSWORD_CONNECTION=<sua senha db>  app-screen-movie
+docker run -d -p 8080:8080 -e USERNAME_CONNECTION=<seu usuario> -e PASSWORD_CONNECTION=<sua senha db>  app-screen-filmes
 ``
 
 ## 

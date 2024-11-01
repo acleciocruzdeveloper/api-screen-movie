@@ -15,6 +15,7 @@ public class UriComponent {
     public static final String URI_MOVIES = "/collections/movies";
     public static final String URI_DELETE_MOVIE = "/collections/movies/{id}";
     public static final String URI_DELETE_USER = "/collections/remove/users/{id}";
+    public static final String URI_LOGIN = "/collections/login";
 
 
     public URI builderUriWithId(String uriTemplate, Object id) {

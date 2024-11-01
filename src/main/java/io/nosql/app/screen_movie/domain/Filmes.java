@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @Document(collection = "movies")
-public class Movie implements Serializable {
+public class Filmes implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 7625529148659077339L;
@@ -26,8 +26,8 @@ public class Movie implements Serializable {
     private String image;
 
 
-    public static Movie converterToMovieDomain(MovieDTO movieDTO) {
-        return Movie.builder()
+    public static Filmes converterToMovieDomain(MovieDTO movieDTO) {
+        return Filmes.builder()
                 .id(movieDTO.id())
                 .title(movieDTO.title())
                 .score(movieDTO.score())
