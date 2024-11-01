@@ -7,12 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.io.Serial;
-import java.util.Collection;
-import java.util.List;
 
 @Getter
 @Setter
@@ -41,7 +35,7 @@ public class Usuarios {
                 .password(usuariosDTO.getPassword())
                 .age(usuariosDTO.getAge())
                 .email(usuariosDTO.getEmail())
-                .perfil(EPerfis.USUARIO)
+                .perfil(EPerfis.CUSTOMERS)
                 .build();
     }
 

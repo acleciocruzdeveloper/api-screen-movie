@@ -1,5 +1,6 @@
 package io.nosql.app.screen_movie.services;
 
+import io.nosql.app.screen_movie.domain.TokenRecord;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -12,7 +13,8 @@ public class AuthService {
 
     private final JwtService jwtService;
 
-    public String autenticar(Authentication authentication) {
+    public TokenRecord autenticar(Authentication authentication) {
+        log.info("require authenticate");
         return jwtService.getToken(authentication);
     }
 }

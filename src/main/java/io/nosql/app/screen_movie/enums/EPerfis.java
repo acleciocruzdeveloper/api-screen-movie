@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum EPerfis {
 
-    ADMIN("Admin"), USUARIO("Usuario");
+    ADMIN("admin"), CUSTOMERS("customers");
 
     private final String perfil;
 

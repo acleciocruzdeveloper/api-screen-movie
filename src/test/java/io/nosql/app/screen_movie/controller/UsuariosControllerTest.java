@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -49,6 +51,7 @@ public class UsuariosControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "usuario", password = "123456")
     @DisplayName("deve retornar uma lista de usuarios cadastrados")
     void deveBuscarUmaListaDeUsuariosNoMongoDB() throws Exception {
 
@@ -57,6 +60,7 @@ public class UsuariosControllerTest {
         when(userService.findAllUser()).thenReturn(usuarios);
 
         ResultActions result = mvc.perform(get(UriComponent.URI_USERS)
+                .with(SecurityMockMvcRequestPostProcessors.csrf())
                 .contentType(MediaType.APPLICATION_JSON));
 
         result.andExpect(status().isOk())
@@ -67,6 +71,7 @@ public class UsuariosControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "usuario", password = "123456")
     @DisplayName("deve realizar o cadastro de um novo usuario com sucesso")
     void deveInserirUmNovoUsuarioComSucessoNoMongoDB() throws Exception {
 
@@ -79,6 +84,7 @@ public class UsuariosControllerTest {
                 .thenReturn(URI.create(UriComponent.URI_USERS + usuario.getId()));
 
         ResultActions result = mvc.perform(post(UriComponent.URI_CREATE_USERS)
+                        .with(SecurityMockMvcRequestPostProcessors.csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(usuario)));
 

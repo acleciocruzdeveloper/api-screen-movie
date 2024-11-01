@@ -1,5 +1,6 @@
 package io.nosql.app.screen_movie.services;
 
+import io.nosql.app.screen_movie.domain.TokenRecord;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -19,9 +20,9 @@ public class JwtService {
 
     private final JwtEncoder jwtEncoder;
 
-    public String getToken(Authentication authentication) {
+    public TokenRecord getToken(Authentication authentication) {
         var now = Instant.now();
-        var expiry = 300L;
+        var expiry = 300000L;
 
         var scopes = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -35,7 +36,9 @@ public class JwtService {
                 .claim("scope", scopes)
                 .build();
 
-        return jwtEncoder.encode(JwtEncoderParameters.from(claimsSet)).getTokenValue();
+        String tokenValue = jwtEncoder.encode(JwtEncoderParameters.from(claimsSet)).getTokenValue();
+        return new TokenRecord(tokenValue, scopes, expiry);
+
     }
 
 }

@@ -1,5 +1,6 @@
 package io.nosql.app.screen_movie.controller;
 
+import io.nosql.app.screen_movie.domain.TokenRecord;
 import io.nosql.app.screen_movie.services.AuthService;
 import io.nosql.app.screen_movie.utils.UriComponent;
 import lombok.RequiredArgsConstructor;
@@ -19,13 +20,13 @@ public class AuthController {
     private final AuthService authService;
 
     @RequestMapping(value = UriComponent.URI_LOGIN, method = RequestMethod.POST)
-    public ResponseEntity<String> login(Authentication authentication) {
+    public ResponseEntity<TokenRecord> login(Authentication authentication) {
         try {
             log.info("REQUEST AUTH API");
-            String token = authService.autenticar(authentication);
-            return ResponseEntity.ok(token);
+            TokenRecord autenticar = authService.autenticar(authentication);
+            return ResponseEntity.ok().body(autenticar);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED.value()).body("credenciais invalidas");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED.value()).build();
         }
     }
 }
