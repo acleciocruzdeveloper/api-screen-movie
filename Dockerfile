@@ -6,6 +6,6 @@ COPY target/*.jar app.jar
 
 EXPOSE 8080
 
-LABEL authors="engacleciocruz"
+LABEL authors="eng.acleciocruz"
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
