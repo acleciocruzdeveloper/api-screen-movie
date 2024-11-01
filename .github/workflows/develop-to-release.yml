@@ -1,0 +1,22 @@
+name: Develop to Release Workflow
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create Pull Request to Release
+        uses: peter-evans/create-pull-request@v4
+        with:
+          branch: release
+          title: "Develop to Release PR"
+          commit-message: "Automatic PR from develop"
+          body: "This PR merges changes from develop into release."

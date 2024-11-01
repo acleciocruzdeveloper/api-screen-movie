@@ -1,0 +1,22 @@
+name: Release to Main Workflow
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create Pull Request to Main
+        uses: peter-evans/create-pull-request@v4
+        with:
+          branch: main
+          title: "Release to Main PR"
+          commit-message: "Automatic PR from release"
+          body: "This PR merges changes from release into main."
