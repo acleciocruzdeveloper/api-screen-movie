@@ -2,9 +2,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "*" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "features/*", "develop", "main" ]
 
 jobs:
   Build-And-Test:
@@ -29,11 +29,3 @@ jobs:
 
     - name: Run unit tests (optional)
       run: mvn test
-
-  docker-image:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{secrets.IMAGE_NAME}}:$(date +%s)
